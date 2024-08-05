@@ -1,16 +1,22 @@
 @import "../sass/variables";
 
 html,
-body,
-#root {
+body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+html {
+  background-color: #eadfc0;
 }
 
 #root {
+  flex-grow: 1;
   padding: $container-padding;
-  background-color: #2ea7b3;
 }
 
 body {

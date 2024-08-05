@@ -1,7 +1,9 @@
+@import "../../sass/variables";
+
 #waste {
   display: flex;
   align-items: center;
-  margin-left: 1.5vw;
+  margin-left: $pile-padding * 2;
 
   .card:not(:first-child) {
     position: relative;

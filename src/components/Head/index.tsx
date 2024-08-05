@@ -1,9 +1,9 @@
 import React from "react";
-import Stock from "./Stock";
-import Waste from "./Waste";
-import Foundations from "./Foundations";
+import Stock from "../Stock";
+import Waste from "../Waste";
+import Foundations from "../Foundations";
 
-import "../styles/head.scss";
+import "./head.scss";
 
 export default function Head() {
   return (

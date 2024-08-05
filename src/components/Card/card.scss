@@ -1,10 +1,11 @@
-@import "../sass/variables";
+@import "../../sass/variables";
 
 .card {
   width: $card-width;
 
   .card-img {
     width: 100%;
+    height: auto;
   }
 }
 

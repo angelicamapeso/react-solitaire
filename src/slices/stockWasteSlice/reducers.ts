@@ -5,5 +5,5 @@ export const setStockWasteReducer: CaseReducer<
   StockWasteState,
   PayloadAction<StockWasteState>
 > = (state, action) => {
-  state = action.payload;
+  return action.payload;
 };

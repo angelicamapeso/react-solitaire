@@ -17,5 +17,5 @@ export type Rank =
 export interface CardModel {
   suit: Suit;
   rank: Rank;
-  //TODO: Add image here
+  isHidden: boolean;
 }

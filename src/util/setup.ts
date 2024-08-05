@@ -8,6 +8,7 @@ export function createDeck(): CardModel[] {
       deck.push({
         rank: rank,
         suit: suit,
+        isHidden: true,
       });
     }
   }
@@ -63,6 +64,12 @@ export function setupTableau(cards: CardModel[]) {
     } else {
       pileIndex += 1;
     }
+  }
+
+  // Flip last card
+  for (let i = 0; i < tableau.length; i++) {
+    const currentPile = tableau[i];
+    currentPile[currentPile.length - 1].isHidden = false;
   }
 
   return tableau;

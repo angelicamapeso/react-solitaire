@@ -1,10 +1,10 @@
-@import "../sass/variables";
+@import "../../sass/variables";
 
 #foundations {
   align-self: flex-end;
   display: flex;
 
   .card {
-    margin: 0 $pile-padding;
+    margin: 0 1rem;
   }
 }

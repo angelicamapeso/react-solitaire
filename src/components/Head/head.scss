@@ -1,0 +1,13 @@
+@import "../../sass/variables";
+
+#head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: $pile-padding;
+  margin-bottom: $pile-padding * 5;
+
+  #stock-waste {
+    display: flex;
+  }
+}

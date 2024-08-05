@@ -1,8 +1,8 @@
 import React from "react";
-import Pile from "./Pile";
-import "../styles/tableau.scss";
+import TableauPile from "../TableauPile";
+import "./tableau.scss";
 import { useSelector } from "react-redux";
-import { selectTableau } from "../slices/tableauSlice";
+import { selectTableau } from "../../slices/tableauSlice";
 
 export default function Tableau() {
   const tableau = useSelector(selectTableau);
@@ -10,7 +10,7 @@ export default function Tableau() {
   return (
     <div id="tableau">
       {tableau.map((pile, i) => (
-        <Pile key={i} cards={pile} />
+        <TableauPile key={i} cards={pile} />
       ))}
     </div>
   );

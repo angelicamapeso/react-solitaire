@@ -1,4 +1,4 @@
 $container-padding: 2vw;
-$pile-padding: 1vw;
+$pile-padding: 1rem;
 $pile-width: calc((100vw - $container-padding * 2) / 7);
-$card-width: $pile-width - calc($pile-padding * 2);
+$card-width: calc($pile-width - $pile-padding * 2);

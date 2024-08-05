@@ -1,0 +1,21 @@
+@import "../../sass/variables";
+
+#tableau {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: nowrap;
+
+  & > .pile {
+    padding: 0px $pile-padding;
+    position: relative;
+  }
+
+  .pile-wrapper {
+    position: relative;
+  }
+
+  .pile .pile {
+    position: absolute;
+    transform: translateY(-90%);
+  }
+}

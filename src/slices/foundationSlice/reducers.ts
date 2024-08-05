@@ -7,7 +7,7 @@ export const setFoundationReducer: CaseReducer<
   FoundationState,
   PayloadAction<FoundationState>
 > = (state, action) => {
-  state.piles = action.payload.piles;
+  return action.payload;
 };
 
 interface FoundationMovePayload {
