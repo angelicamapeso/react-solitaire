@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "./Head";
 import Tableau from "./Tableau";
 import "../styles/app.scss";
-import { createDeck, shuffleDeck } from "../util/card";
+import { createDeck, setupSolitaire, shuffleDeck } from "../util/setup";
+import { useAppDispatch } from "../hooks/store";
+import { set as setTableau } from "../slices/tableauSlice";
 
 function App() {
-  const cards = createDeck();
-  const shuffledCards = shuffleDeck(cards);
+  const dispatch = useAppDispatch();
 
-  console.log("Cards: ", cards);
-  console.log("Shuffled: ", shuffledCards);
+  useEffect(() => {
+    const cards = createDeck();
+    const shuffledCards = shuffleDeck(cards);
+    const { tableau } = setupSolitaire(shuffledCards);
+
+    dispatch(setTableau({ piles: tableau }));
+  });
 
   return (
     <div className="App">

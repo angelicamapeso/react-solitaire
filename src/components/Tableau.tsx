@@ -1,16 +1,17 @@
 import React from "react";
 import Pile from "./Pile";
 import "../styles/tableau.scss";
+import { useSelector } from "react-redux";
+import { selectTableau } from "../slices/tableauSlice";
 
 export default function Tableau() {
-  const generatePiles = () => {
-    const numPiles = 7;
-    const piles = [];
-    for (let i = 0; i < numPiles; i++) {
-      piles.push(<Pile key={i} />);
-    }
-    return piles;
-  };
+  const tableau = useSelector(selectTableau);
 
-  return <div id="tableau">{generatePiles()}</div>;
+  return (
+    <div id="tableau">
+      {tableau.map((pile, i) => (
+        <Pile key={i} cards={pile} />
+      ))}
+    </div>
+  );
 }

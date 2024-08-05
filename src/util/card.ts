@@ -1,31 +1,18 @@
-import { RANKS, SUITS } from "../constants/card";
-import { Card } from "../types/Card";
+import { CardModel } from "../types/Card";
+import { CARD_FACE_URL } from "../constants/card";
 
-export function createDeck(): Card[] {
-  const deck: Card[] = [];
-  for (const suit of SUITS) {
-    for (const rank of RANKS) {
-      deck.push({
-        rank: rank,
-        suit: suit,
-      });
-    }
+// CardModel images currently from: https://www.deckofcardsapi.com/
+export function getFaceCardUrl(card: CardModel) {
+  const { suit, rank } = card;
+
+  let urlSuit: string = suit.slice(0, 1).toUpperCase();
+
+  let urlRank: string = `${rank}`;
+  if (typeof rank === "string") {
+    urlRank = rank.slice(0, 1).toUpperCase();
+  } else if (rank === 10) {
+    urlRank = "0";
   }
-  return deck;
-}
 
-// Using Fisher–Yates Shuffle: https://bost.ocks.org/mike/shuffle/
-export function shuffleDeck(cards: Card[]): Card[] {
-  const cardCopy = [...cards];
-  let currIndex = cardCopy.length;
-
-  while (currIndex !== 0) {
-    const randIndex = Math.floor(Math.random() * currIndex);
-    currIndex--;
-
-    const temp = cardCopy[currIndex];
-    cardCopy[currIndex] = cardCopy[randIndex];
-    cardCopy[randIndex] = temp;
-  }
-  return cardCopy;
+  return CARD_FACE_URL + urlRank + urlSuit + ".png";
 }

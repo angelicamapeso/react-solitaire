@@ -7,7 +7,7 @@ export default function Waste() {
   const generateCards = () => {
     const cards = [];
     for (let i = 0; i < 3; i++) {
-      cards.push(<Card key={i} card={true} />);
+      cards.push(<Card key={i} />);
     }
     return cards;
   };

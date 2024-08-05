@@ -1,19 +1,26 @@
 import React from "react";
 
+import { CardModel } from "../types/Card";
 import { BACK_CARD_URL } from "../constants/card";
 import "../styles/card.scss";
+import { getFaceCardUrl } from "../util/card";
 
 type Props = {
-  card?: boolean;
+  card?: CardModel;
+  isHidden?: boolean;
 };
 
-export default function Placeholder({ card }: Props) {
+export default function Card({ card, isHidden = true }: Props) {
   return (
-    <div className={`card ${!card && "placeholder"}`}>
+    <div className={`card ${!card ? "placeholder" : ""}`}>
       <img
         className="card-img"
-        src={BACK_CARD_URL}
-        alt="Placeholder for a card"
+        src={card && !isHidden ? getFaceCardUrl(card) : BACK_CARD_URL}
+        alt={
+          card && !isHidden
+            ? `${card.rank} of ${card.suit}`
+            : `${card ? "Hidden" : "Empty"} Card`
+        }
       />
     </div>
   );

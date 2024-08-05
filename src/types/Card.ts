@@ -14,7 +14,7 @@ export type Rank =
   | "jack"
   | "ace";
 
-export interface Card {
+export interface CardModel {
   suit: Suit;
   rank: Rank;
   //TODO: Add image here
