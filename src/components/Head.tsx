@@ -1,7 +1,7 @@
 import React from "react";
-import Stock from "./Stock.jsx";
-import Waste from "./Waste.jsx";
-import Foundations from "./Foundations.jsx";
+import Stock from "./Stock";
+import Waste from "./Waste";
+import Foundations from "./Foundations";
 
 import "../styles/head.scss";
 

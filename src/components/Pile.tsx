@@ -1,7 +1,11 @@
 import React from "react";
-import Card from "./Card.jsx";
+import Card from "./Card";
 import "../styles/pile.scss";
 
-export default function Pile({ cards }) {
+type Props = {
+  cards?: any[];
+};
+
+export default function Pile({ cards }: Props) {
   return <div className="pile">{!cards ? <Card /> : null}</div>;
 }

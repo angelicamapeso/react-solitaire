@@ -1,9 +1,13 @@
 import React from "react";
 
-import { BACK_CARD_URL } from "../constants/card.js";
+import { BACK_CARD_URL } from "../constants/card";
 import "../styles/card.scss";
 
-export default function Placeholder({ card }) {
+type Props = {
+  card?: boolean;
+};
+
+export default function Placeholder({ card }: Props) {
   return (
     <div className={`card ${!card && "placeholder"}`}>
       <img

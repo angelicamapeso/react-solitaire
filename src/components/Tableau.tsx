@@ -1,5 +1,5 @@
 import React from "react";
-import Pile from "./Pile.jsx";
+import Pile from "./Pile";
 import "../styles/tableau.scss";
 
 export default function Tableau() {
