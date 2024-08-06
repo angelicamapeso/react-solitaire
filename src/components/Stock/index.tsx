@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { BACK_CARD_URL } from "../../constants/card";
 import "./stock.scss";
