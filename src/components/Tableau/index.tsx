@@ -7,6 +7,10 @@ import { selectTableau } from "../../slices/tableauSlice";
 export default function Tableau() {
   const tableau = useSelector(selectTableau);
 
+  // useEffect(() => {
+  //   console.log("tableau", tableau);
+  // }, [tableau]);
+
   return (
     <div id="tableau">
       {tableau.map((pile, i) => (

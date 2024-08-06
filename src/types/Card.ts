@@ -1,3 +1,5 @@
+import { LocationModel } from "./Location";
+
 export type Suit = "hearts" | "diamonds" | "spades" | "clubs";
 export type Rank =
   | 2
@@ -18,4 +20,5 @@ export interface CardModel {
   suit: Suit;
   rank: Rank;
   isHidden: boolean;
+  location?: LocationModel;
 }

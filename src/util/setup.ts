@@ -1,5 +1,6 @@
 import { RANKS, SUITS } from "../constants/card";
 import { CardModel } from "../types/Card";
+import { markStockLocation, markTableauLocation } from "./location";
 
 export function createDeck(): CardModel[] {
   const deck: CardModel[] = [];
@@ -40,7 +41,12 @@ export function setupSolitaire(cards: CardModel[]) {
   const tableauCards = faceDown.slice(-1 * NUM_TABLEAU_CARDS);
   const tableau = setupTableau(tableauCards);
 
-  const stock = faceDown.slice(0, cards.length - NUM_TABLEAU_CARDS);
+  const stock = faceDown
+    .slice(0, cards.length - NUM_TABLEAU_CARDS)
+    .map((card, i) => {
+      markStockLocation(card, i);
+      return card;
+    });
   return { tableau, stock };
 }
 
@@ -68,9 +74,14 @@ export function setupTableau(cards: CardModel[]) {
   }
 
   // Flip last card
-  for (let i = 0; i < tableau.length; i++) {
-    const currentPile = tableau[i];
-    currentPile[currentPile.length - 1].isHidden = false;
+  for (let p = 0; p < tableau.length; p++) {
+    const currentPile = tableau[p];
+    currentPile.forEach((card, index) => {
+      markTableauLocation(card, p, index);
+      if (index === currentPile.length - 1) {
+        card.isHidden = false;
+      }
+    });
   }
 
   return tableau;

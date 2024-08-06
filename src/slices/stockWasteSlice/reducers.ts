@@ -1,5 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
 import { StockWasteState } from "./state";
+import { markStockLocation, markWasteLocation } from "../../util/location";
 
 export const setStockWasteReducer: CaseReducer<
   StockWasteState,
@@ -13,16 +14,19 @@ export const nextWasteReducer: CaseReducer<StockWasteState> = (state) => {
     const updatedStock = [...state.stock];
     const cardsToMove = updatedStock
       .splice(updatedStock.length - 3, 3)
-      .map((card) => {
+      .reverse()
+      .map((card, i) => {
         card.isHidden = false;
+        markWasteLocation(card, i + state.waste.length);
         return card;
       });
 
-    state.waste = [...state.waste, ...cardsToMove.reverse()];
+    state.waste = [...state.waste, ...cardsToMove];
     state.stock = updatedStock;
   } else {
-    const updatedStock = [...state.waste].reverse().map((card) => {
+    const updatedStock = [...state.waste].reverse().map((card, i) => {
       card.isHidden = true;
+      markStockLocation(card, i);
       return card;
     });
     state.stock = updatedStock;

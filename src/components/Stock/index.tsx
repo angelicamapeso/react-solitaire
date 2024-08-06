@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { BACK_CARD_URL } from "../../constants/card";
 import "./stock.scss";
@@ -10,9 +10,9 @@ export default function Stock() {
   const stock = useAppSelector(selectStock);
   const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   console.log("Stock", stock);
-  // }, [stock]);
+  useEffect(() => {
+    console.log("Stock", stock);
+  }, [stock]);
 
   const onStockClick = () => {
     dispatch(nextWaste());
