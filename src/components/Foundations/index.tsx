@@ -2,15 +2,25 @@ import React from "react";
 import Card from "../Card";
 
 import "./foundations.scss";
+import { useAppSelector } from "../../hooks/store";
+import { selectFoundations } from "../../slices/foundationSlice";
 
 export default function Foundations() {
-  const generatePiles = () => {
-    const piles = [];
-    for (let i = 0; i < 4; i++) {
-      piles.push(<Card key={i} />);
-    }
-    return piles;
-  };
+  const foundations = useAppSelector(selectFoundations);
 
-  return <div id="foundations">{generatePiles()}</div>;
+  return (
+    <div id="foundations">
+      {foundations.map((foundation, i) => (
+        <div key={i}>
+          <Card
+            card={
+              foundation.length > 0
+                ? foundation[foundation.length - 1]
+                : undefined
+            }
+          />
+        </div>
+      ))}
+    </div>
+  );
 }
