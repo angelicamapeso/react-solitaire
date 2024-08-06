@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./state";
-import { setStockWasteReducer } from "./reducers";
+import { nextWasteReducer, setStockWasteReducer } from "./reducers";
 import { RootState } from "../../store";
 
 export const stockWasteSlice = createSlice({
@@ -8,10 +8,11 @@ export const stockWasteSlice = createSlice({
   initialState,
   reducers: {
     set: setStockWasteReducer,
+    nextWaste: nextWasteReducer,
   },
 });
 
-export const { set } = stockWasteSlice.actions;
+export const { set, nextWaste } = stockWasteSlice.actions;
 
 export const selectStock = (state: RootState) => state.stockWaste.stock;
 

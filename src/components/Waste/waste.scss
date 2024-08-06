@@ -4,9 +4,21 @@
   display: flex;
   align-items: center;
   margin-left: $pile-padding * 2;
+  position: relative;
 
-  .card:not(:first-child) {
-    position: relative;
-    margin-left: -7vw;
+  .card {
+    position: absolute;
+  }
+
+  .card:first-child {
+    left: 0;
+  }
+
+  .card:nth-child(2) {
+    transform: translateX(35%);
+  }
+
+  .card:nth-child(3) {
+    transform: translateX(70%);
   }
 }

@@ -34,6 +34,7 @@ export function shuffleDeck(cards: CardModel[]): CardModel[] {
 export function setupSolitaire(cards: CardModel[]) {
   // Assume deck is "face up", so we reverse
   const faceDown = [...cards].reverse();
+  console.log("total cards: ", faceDown);
 
   const NUM_TABLEAU_CARDS = 28;
   const tableauCards = faceDown.slice(-1 * NUM_TABLEAU_CARDS);

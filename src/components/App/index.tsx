@@ -16,7 +16,7 @@ export default function App() {
     const { tableau, stock } = setupSolitaire(shuffledCards);
 
     dispatch(setTableau({ piles: tableau }));
-    dispatch(setStockWaste({ waste: [], wasteStartIndex: 0, stock }));
+    dispatch(setStockWaste({ waste: [], stock }));
   });
 
   return (
