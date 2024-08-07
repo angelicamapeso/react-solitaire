@@ -57,8 +57,11 @@ export const nextWasteReducer: CaseReducer<StockWasteState> = (state) => {
 };
 
 export const removeFromWasteReducer: CaseReducer<StockWasteState> = (state) => {
-  const { updatedPile: updatedWasteDisplay, card: removedCard } =
-    removeFromPile(state.wasteDisplay);
+  const { updatedPile: updatedWasteDisplay, cards } = removeFromPile(
+    state.wasteDisplay
+  );
+
+  const removedCard = cards[0];
 
   if (removedCard != null) {
     const wasteIndex = state.waste.findIndex(

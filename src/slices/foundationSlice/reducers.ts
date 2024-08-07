@@ -22,9 +22,10 @@ export const moveInFoundationReducer: CaseReducer<
 > = (state, action) => {
   const { prevPileIndex, targetPileIndex } = action.payload;
 
-  const { updatedPile: oldPile, card: cardRemoved } = removeFromPile(
+  const { updatedPile: oldPile, cards } = removeFromPile(
     state.piles[prevPileIndex]
   );
+  const cardRemoved = cards[0];
 
   if (cardRemoved != null) {
     const newCard = { ...cardRemoved } as CardModel;
@@ -34,10 +35,9 @@ export const moveInFoundationReducer: CaseReducer<
       state.piles[targetPileIndex].length
     );
 
-    const { updatedPile: newPile } = addToPile(
-      state.piles[targetPileIndex],
-      newCard
-    );
+    const { updatedPile: newPile } = addToPile(state.piles[targetPileIndex], [
+      newCard,
+    ]);
 
     state.piles[prevPileIndex] = oldPile;
     state.piles[targetPileIndex] = newPile;
@@ -72,7 +72,7 @@ export const addToFoundationReducer: CaseReducer<
   const newCard = { ...card } as CardModel;
   markFoundationLocation(newCard, pileIndex, state.piles[pileIndex].length);
 
-  const { updatedPile } = addToPile(state.piles[pileIndex], newCard);
+  const { updatedPile } = addToPile(state.piles[pileIndex], [newCard]);
 
   state.piles[pileIndex] = updatedPile;
 };

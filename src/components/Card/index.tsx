@@ -6,7 +6,12 @@ import "./card.scss";
 import { getFaceCardUrl, isEmpty } from "../../util/card";
 import { DragTypes } from "../../types/DragTypes";
 import { useDrag, useDrop } from "react-dnd";
-import { canDrag, canDrop, handleFoundationDrop } from "../../util/rules";
+import {
+  canDrag,
+  canDrop,
+  handleFoundationDrop,
+  handleTableauDrop,
+} from "../../util/rules";
 import { useAppDispatch } from "../../hooks/store";
 
 type Props = {
@@ -25,6 +30,7 @@ export default function Card({ card }: Props) {
   const [, drop] = useDrop(() => ({
     accept: [DragTypes.CARD, DragTypes.PILE],
     drop: (item: CardModel) => {
+      console.log("Item: ", item);
       handleDrop(item);
     },
     canDrop: (item: CardModel) => canDrop(item, card),
@@ -34,6 +40,8 @@ export default function Card({ card }: Props) {
     if (card.location?.name === "foundation") {
       handleFoundationDrop(dispatch, item, card);
     } else if (card.location?.name === "tableau") {
+      // console.log("Can drop tablueau: ", item, card);
+      handleTableauDrop(dispatch, item, card);
     }
   };
 

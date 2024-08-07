@@ -1,20 +1,26 @@
 import { CardModel } from "../types/Card";
 
-export function removeFromPile(pile: CardModel[], index?: number) {
+export function removeFromPile(
+  pile: CardModel[],
+  start?: number,
+  end?: number
+) {
   const updatedPile = [...pile];
 
-  let card;
-  if (index != null) {
-    card = updatedPile.splice(index, 1)[0];
+  let cards = [];
+  if (start != null && end != null) {
+    cards = updatedPile.splice(start, end);
+  } else if (start != null && end == null) {
+    cards = updatedPile.splice(start, 1);
   } else {
-    card = updatedPile.pop();
+    const removed = updatedPile.pop();
+    cards = removed ? [removed] : [];
   }
 
-  return { updatedPile, card };
+  return { updatedPile, cards };
 }
 
-export function addToPile(pile: CardModel[], card: CardModel) {
-  const updatedPile = [...pile];
-  updatedPile.push(card);
+export function addToPile(pile: CardModel[], cards: CardModel[]) {
+  const updatedPile = [...pile, ...cards];
   return { updatedPile };
 }

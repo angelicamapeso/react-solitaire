@@ -8,9 +8,10 @@ import { EMPTY_CARD } from "../../constants/card";
 
 type Props = {
   cards?: CardModel[];
+  pileIndex?: number;
 };
 
-export default function TableauPile({ cards }: Props) {
+export default function TableauPile({ cards, pileIndex }: Props) {
   const [_, drag] = useDrag(() => ({
     type: DragTypes.PILE,
     item: () => (cards && cards.length > 0 ? cards[0] : null),
@@ -19,12 +20,13 @@ export default function TableauPile({ cards }: Props) {
 
   return (
     <div className="pile" ref={drag}>
-      {!cards ? (
+      {!cards || cards.length === 0 ? (
         <Card
           card={{
             ...EMPTY_CARD,
             location: {
               name: "tableau",
+              pileIndex,
               index: 0,
             },
           }}
