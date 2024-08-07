@@ -1,8 +1,15 @@
 import { CardModel } from "../types/Card";
 
-export function removeFromPile(pile: CardModel[]) {
+export function removeFromPile(pile: CardModel[], index?: number) {
   const updatedPile = [...pile];
-  const card = updatedPile.pop();
+
+  let card;
+  if (index != null) {
+    card = updatedPile.splice(index, 1)[0];
+  } else {
+    card = updatedPile.pop();
+  }
+
   return { updatedPile, card };
 }
 

@@ -25,3 +25,27 @@ export function markWasteLocation(card: CardModel, index: number) {
     index,
   };
 }
+
+export function markwasteDisplayLocation(
+  card: CardModel,
+  index: number,
+  isLast: boolean
+) {
+  card.location = {
+    name: "waste-display",
+    index,
+    isLast,
+  };
+}
+
+export function markFoundationLocation(
+  card: CardModel,
+  pileIndex: number,
+  index: number
+) {
+  card.location = {
+    name: "foundation",
+    pileIndex,
+    index,
+  };
+}

@@ -4,8 +4,8 @@ import Tableau from "../Tableau";
 import "./app.scss";
 import { createDeck, setupSolitaire, shuffleDeck } from "../../util/setup";
 import { useAppDispatch } from "../../hooks/store";
-import { set as setTableau } from "../../slices/tableauSlice";
-import { set as setStockWaste } from "../../slices/stockWasteSlice";
+import { setTableau } from "../../slices/tableauSlice";
+import { setStockWaste } from "../../slices/stockWasteSlice";
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ export default function App() {
     const { tableau, stock } = setupSolitaire(shuffledCards);
 
     dispatch(setTableau({ piles: tableau }));
-    dispatch(setStockWaste({ waste: [], stock }));
+    dispatch(setStockWaste({ waste: [], wasteDisplay: [], stock }));
   });
 
   return (

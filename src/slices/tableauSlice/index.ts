@@ -1,17 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./state";
-import { setTableauReducer } from "./reducers";
+import { removeFromTableauReducer, setTableauReducer } from "./reducers";
 import { RootState } from "../../store";
 
 export const tableauSlice = createSlice({
   name: "tableau",
   initialState,
   reducers: {
-    set: setTableauReducer,
+    setTableau: setTableauReducer,
+    removeFromTableau: removeFromTableauReducer,
   },
 });
 
-export const { set } = tableauSlice.actions;
+export const { setTableau, removeFromTableau } = tableauSlice.actions;
 
 export const selectTableau = (state: RootState) => state.tableau.piles;
 

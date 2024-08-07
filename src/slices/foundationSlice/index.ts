@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./state";
 import {
   addToFoundationReducer,
-  moveFromFoundationReducer,
+  moveInFoundationReducer,
   removeFromFoundationReducer,
   setFoundationReducer,
 } from "./reducers";
@@ -12,14 +12,19 @@ export const foundationsSlice = createSlice({
   name: "foundations",
   initialState,
   reducers: {
-    set: setFoundationReducer,
-    move: moveFromFoundationReducer,
-    remove: removeFromFoundationReducer,
-    add: addToFoundationReducer,
+    setFoundations: setFoundationReducer,
+    moveInFoundation: moveInFoundationReducer,
+    removeFromFoundation: removeFromFoundationReducer,
+    addToFoundation: addToFoundationReducer,
   },
 });
 
-export const { set, move, remove, add } = foundationsSlice.actions;
+export const {
+  setFoundations,
+  moveInFoundation,
+  removeFromFoundation,
+  addToFoundation,
+} = foundationsSlice.actions;
 
 export const selectFoundations = (state: RootState) => state.foundations.piles;
 

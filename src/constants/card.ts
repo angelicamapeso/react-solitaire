@@ -5,7 +5,11 @@ export const BACK_CARD_URL =
 
 export const CARD_FACE_URL = "https://deckofcardsapi.com/static/img/";
 
-export const SUITS: Suit[] = ["clubs", "diamonds", "hearts", "spades"];
+export const RED_SUITS: Suit[] = ["diamonds", "hearts"];
+
+export const BLACK_SUITS: Suit[] = ["clubs", "spades"];
+
+export const SUITS: Suit[] = [...RED_SUITS, ...BLACK_SUITS];
 
 export const RANKS: Rank[] = [
   "ace",

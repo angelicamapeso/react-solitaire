@@ -2,6 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
 import { CardModel } from "../../types/Card";
 import { FoundationState } from "./state";
 import { addToPile, removeFromPile } from "../../util/pile";
+import { markFoundationLocation } from "../../util/location";
 
 export const setFoundationReducer: CaseReducer<
   FoundationState,
@@ -15,20 +16,29 @@ interface FoundationMovePayload {
   targetPileIndex: number;
 }
 
-export const moveFromFoundationReducer: CaseReducer<
+export const moveInFoundationReducer: CaseReducer<
   FoundationState,
   PayloadAction<FoundationMovePayload>
 > = (state, action) => {
   const { prevPileIndex, targetPileIndex } = action.payload;
+
   const { updatedPile: oldPile, card: cardRemoved } = removeFromPile(
     state.piles[prevPileIndex]
   );
 
   if (cardRemoved != null) {
+    const newCard = { ...cardRemoved } as CardModel;
+    markFoundationLocation(
+      newCard,
+      targetPileIndex,
+      state.piles[targetPileIndex].length
+    );
+
     const { updatedPile: newPile } = addToPile(
       state.piles[targetPileIndex],
-      cardRemoved
+      newCard
     );
+
     state.piles[prevPileIndex] = oldPile;
     state.piles[targetPileIndex] = newPile;
   }
@@ -58,7 +68,11 @@ export const addToFoundationReducer: CaseReducer<
   PayloadAction<FoundationAddPayload>
 > = (state, action) => {
   const { pileIndex, card } = action.payload;
-  const { updatedPile } = addToPile(state.piles[pileIndex], card);
+
+  const newCard = { ...card } as CardModel;
+  markFoundationLocation(newCard, pileIndex, state.piles[pileIndex].length);
+
+  const { updatedPile } = addToPile(state.piles[pileIndex], newCard);
 
   state.piles[pileIndex] = updatedPile;
 };

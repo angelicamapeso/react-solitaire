@@ -22,7 +22,8 @@ export default function Foundations() {
                     ...EMPTY_CARD,
                     location: {
                       name: "foundation",
-                      index: i,
+                      pileIndex: i,
+                      index: 0,
                     },
                   }
             }
