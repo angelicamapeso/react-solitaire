@@ -28,4 +28,6 @@ export const {
 
 export const selectFoundations = (state: RootState) => state.foundations.piles;
 
+export const selectHasWon = (state: RootState) => state.foundations.hasWon;
+
 export default foundationsSlice.reducer;

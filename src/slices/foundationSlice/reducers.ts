@@ -3,6 +3,7 @@ import { CardModel } from "../../types/Card";
 import { FoundationState } from "./state";
 import { addToPile, removeFromPile } from "../../util/pile";
 import { markFoundationLocation } from "../../util/location";
+import { checkHasWon } from "../../util/rules";
 
 export const setFoundationReducer: CaseReducer<
   FoundationState,
@@ -75,4 +76,8 @@ export const addToFoundationReducer: CaseReducer<
   const { updatedPile } = addToPile(state.piles[pileIndex], [newCard]);
 
   state.piles[pileIndex] = updatedPile;
+
+  if (checkHasWon(state.piles)) {
+    state.hasWon = true;
+  }
 };

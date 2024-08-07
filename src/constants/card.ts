@@ -32,3 +32,5 @@ export const EMPTY_CARD = {
   rank: null,
   isHidden: null,
 };
+
+export const TOTAL_NUM_CARDS = 52;

@@ -2,6 +2,7 @@ import {
   addToFoundationFromOther,
   addToTableauFromOther,
 } from "../actions/ruleActions";
+import { TOTAL_NUM_CARDS } from "../constants/card";
 import {
   moveInFoundation,
   removeFromFoundation,
@@ -106,4 +107,12 @@ export function handleTableauDrop(
       })
     );
   }
+}
+
+export function checkHasWon(foundation: CardModel[][]) {
+  const foundationCount = foundation.reduce((totalNumCards, pile) => {
+    return totalNumCards + pile.length;
+  }, 0);
+
+  return foundationCount === TOTAL_NUM_CARDS;
 }
