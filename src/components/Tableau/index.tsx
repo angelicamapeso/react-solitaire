@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import TableauPile from "../TableauPile";
 import "./tableau.scss";
 import { useSelector } from "react-redux";
@@ -14,7 +15,7 @@ export default function Tableau() {
   return (
     <div id="tableau">
       {tableau.map((pile, i) => (
-        <TableauPile key={i} cards={pile} />
+        <TableauPile key={uuidv4()} cards={pile} />
       ))}
     </div>
   );

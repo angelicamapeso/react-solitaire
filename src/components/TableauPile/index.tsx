@@ -2,16 +2,33 @@ import React from "react";
 import Card from "../Card";
 import "./tableauPile.scss";
 import { CardModel } from "../../types/Card";
+import { DragTypes } from "../../types/DragTypes";
+import { useDrag } from "react-dnd";
+import { EMPTY_CARD } from "../../constants/card";
 
 type Props = {
   cards?: CardModel[];
 };
 
 export default function TableauPile({ cards }: Props) {
+  const [_, drag] = useDrag(() => ({
+    type: DragTypes.PILE,
+    item: () => (cards && cards.length > 0 ? cards[0] : null),
+    canDrag: () => (cards && cards.length > 0 && !cards[0].isHidden) as boolean,
+  }));
+
   return (
-    <div className="pile">
+    <div className="pile" ref={drag}>
       {!cards ? (
-        <Card />
+        <Card
+          card={{
+            ...EMPTY_CARD,
+            location: {
+              name: "tableau",
+              index: 0,
+            },
+          }}
+        />
       ) : (
         <>
           {cards.length > 0 ? <Card card={cards[0]} /> : null}

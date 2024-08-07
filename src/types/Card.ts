@@ -17,8 +17,8 @@ export type Rank =
   | "ace";
 
 export interface CardModel {
-  suit: Suit;
-  rank: Rank;
-  isHidden: boolean;
+  suit: Suit | null;
+  rank: Rank | null;
+  isHidden: boolean | null;
   location?: LocationModel;
 }

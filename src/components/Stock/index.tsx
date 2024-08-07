@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { BACK_CARD_URL } from "../../constants/card";
+import { BACK_CARD_URL, EMPTY_CARD } from "../../constants/card";
 import "./stock.scss";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
 import { nextWaste, selectStock } from "../../slices/stockWasteSlice";
@@ -23,7 +23,15 @@ export default function Stock() {
       {stock.length > 0 ? (
         <img className="card-img" alt="Stock Pile" src={BACK_CARD_URL} />
       ) : (
-        <Card />
+        <Card
+          card={{
+            ...EMPTY_CARD,
+            location: {
+              name: "stock",
+              index: 0,
+            },
+          }}
+        />
       )}
     </button>
   );

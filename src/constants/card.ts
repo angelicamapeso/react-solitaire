@@ -22,3 +22,9 @@ export const RANKS: Rank[] = [
   "queen",
   "king",
 ];
+
+export const EMPTY_CARD = {
+  suit: null,
+  rank: null,
+  isHidden: null,
+};
